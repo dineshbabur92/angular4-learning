@@ -10,7 +10,6 @@ import { CounterService } from './counter.service';
 })
 export class AppComponent {
 
-  constructor(private usersService: UsersService,
-    private counterService: CounterService){}
+  constructor(private counterService: CounterService){}
 
 }
