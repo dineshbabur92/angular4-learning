@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-5">
-		<app-recipe-list (onChooseRecipe)="onChooseRecipe($event)" class=""></app-recipe-list>
+		<app-recipe-list class=""></app-recipe-list>
 	</div>
 	<div class="col-md-7">
 		<app-recipe-detail [currentRecipe]="currentRecipe" *ngIf="currentRecipe; else noRecipeSelected" class=""></app-recipe-detail>
