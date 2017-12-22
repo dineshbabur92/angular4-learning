@@ -16,6 +16,7 @@ export class RecipeItemComponent implements OnInit {
 
 	@Input() recipe: Recipe;
 	// @Output('onChooseRecipe') chooseRecipeEvent = new EventEmitter<Recipe>()
+  @Input() recipeIndex: number;
 
   constructor(private recipeService: RecipeService) { }
 
@@ -23,10 +24,10 @@ export class RecipeItemComponent implements OnInit {
   }
 
   // onChooseRecipe(recipe: Recipe){
-  onChooseRecipe(){
-  	// this.chooseRecipeEvent.emit(this.recipe);
-    // console.log("Recipe selected: ", this.recipe);
-  	this.recipeService.recipeSelected.emit(this.recipe);
-  }
+  // onChooseRecipe(){
+  // 	// this.chooseRecipeEvent.emit(this.recipe);
+  //   // console.log("Recipe selected: ", this.recipe);
+  // 	this.recipeService.recipeSelected.emit(this.recipe);
+  // }
 
 }
