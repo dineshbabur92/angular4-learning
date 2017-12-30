@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!--
+          Create a Form with the following Controls and Validators
+          1) Project Name (should not be empty)
+          2) Mail (should not be a empty and a valid email)
+          3) Project Status Dropdown, with three values: 'Stable', 'Critical', 'Finished'
+          4) Submit Button
+
+          Add your own Validator which doesn't allow "Test" as a Project Name
+
+          Also implement that Validator as an async Validator (replace the other one)
+
+          Upon submitting the form, simply print the value to the console
+
+      -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+        <div formGroupName="projectInfo">
+          <div class="form-group">
+            <label for="project_name">Project Name:</label>
+            <input type="text" class="form-control" formControlName="projectName">
+            <span class="help-block" *ngIf="projectForm.get('projectInfo.projectName').status==='INVALID'">
+              <span class="help-block" *ngIf="projectForm.get('projectInfo.projectName').errors['invalidProjectName']">'Test' is an invalid project name. Use something else.</span>
+              <span class="help-block" *ngIf="projectForm.get('projectInfo.projectName').errors['required'] && projectForm.get('projectInfo.projectName').touched">Please enter a valid project name.</span>
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" formControlName="email">
+          </div>
+        </div>
+        <div class="form-group">
+          <select name="" id="" class="form-control" formControlName="projectState">
+            <option *ngFor="let state of projectStates" [value]="state">{{ state }}</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit">submit</button>
+      </form>
+    </div>
+  </div>
+  <div class="row" *ngIf="isFormSubmitted">
+    <hr/>
+    <div class="col-xs-12">
+      <h2>Form Summary:</h2>
+      <p>Project Name: {{ formValues.projectName }} </p>
+      <p>Email: {{ formValues.email }} </p>
+      <p>Project Status: {{ formValues.projectState }} </p>
+    </div>
+  </div>
+</div>
