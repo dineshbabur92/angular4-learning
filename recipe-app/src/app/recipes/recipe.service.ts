@@ -36,6 +36,12 @@ export class RecipeService {
 		return this.recipes.slice();
 	}
 
+	setRecipes(recipes: Recipe[]){
+		console.log("fetched recipes, ", recipes);
+		this.recipes = recipes;
+		this.recipeUpdated.next(this.recipes.slice());
+	}
+
 	addToShoppingList(ingredients: Ingredient[]){
 		this.slService.addIngredients(ingredients);
 	}
