@@ -4,20 +4,22 @@ import "rxjs/Rx";
 
 import { Recipe } from "../recipes/recipe.model";
 import { RecipeService } from "../recipes/recipe.service";
+import { AuthService } from "../auth/auth.service";
 
 @Injectable()
 export class DataStorageService{
 	
 	constructor(private http: Http,
-		private recipeService: RecipeService){
+		private recipeService: RecipeService,
+		private authService: AuthService){
 
 	}
 	saveRecipes(){
-		return this.http.put("https://udemy-recipe-app-6617d.firebaseio.com/recipes.json", 
+		return this.http.put("https://udemy-recipe-app-9.firebaseio.com/recipes.json?auth=" + this.authService.getToken(), 
 			this.recipeService.getRecipes());
 	}
 	fetchRecipes(){
-		this.http.get("https://udemy-recipe-app-6617d.firebaseio.com/recipes.json").map(
+		this.http.get("https://udemy-recipe-app-9.firebaseio.com/recipes.json?auth=" + this.authService.getToken()).map(
 				(response: Response) => {
 					const recipes: Recipe[] = response.json();
 					console.log("Recipes received in map after fetch, ", recipes);

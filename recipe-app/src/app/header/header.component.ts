@@ -7,6 +7,7 @@ import { Response } from "@angular/http";
 
 import { DataStorageService } from "../shared/data-storage.service";
 import { RecipeService } from "../recipes/recipe.service";
+import { AuthService } from "../auth/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,8 @@ export class HeaderComponent implements OnInit {
 
 	// @Output('goToEmitted') goToEmitter = new EventEmitter<string>();
   constructor(private dataStorageService: DataStorageService,
-    private recipeService: RecipeService) { }
+    private recipeService: RecipeService,
+    private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -36,6 +38,9 @@ export class HeaderComponent implements OnInit {
     this.dataStorageService.fetchRecipes();
   }
 
+  signout(){
+    this.authService.signout();
+  }
 
 
 }
