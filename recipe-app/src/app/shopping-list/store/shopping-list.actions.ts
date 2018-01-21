@@ -6,6 +6,8 @@ export const ADD_INGREDIENT = "ADD_INGREDIENT";
 export const ADD_INGREDIENTS = "ADD_INGREDIENTS";
 export const UPDATE_INGREDIENT = "UPDATE_INGREDIENT";
 export const DELETE_INGREDIENT = "DELETE_INGREDIENT";
+export const START_EDIT_INGREDIENT = "START_EDIT_INGREDIENT";
+export const RESET = "RESET";
 
 export class AddIngredient implements Action{
 
@@ -43,8 +45,25 @@ export class DeleteIngredient implements Action{
 
 }
 
+export class StartEditIngredient implements Action{
+
+	readonly type = START_EDIT_INGREDIENT;
+	constructor(public payload: number){
+
+	}
+
+}
+
+export class Reset implements Action{
+
+	readonly type = RESET;
+
+}
+
 export type ShoppingListAction = 
 	AddIngredient 
 	| AddIngredients 
 	| UpdateIngredient 
-	| DeleteIngredient;
+	| DeleteIngredient
+	| StartEditIngredient
+	| Reset;

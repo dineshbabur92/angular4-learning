@@ -15,7 +15,7 @@ const initialState: ShoppingListState = {
 		new Ingredient("tomatoes", 10)
 	],
 	editedIngredient: null,
-	editedIngredientIndex: 0
+	editedIngredientIndex: -1
 }
 
 export function ShoppingListReducer(
@@ -42,14 +42,29 @@ export function ShoppingListReducer(
 			ingredients[action.payload.index] = updatedIngredient;
 			return {
 				...state,
-				ingredients: ingredients
+				ingredients: ingredients,
+				editedIngredientIndex: initialState.editedIngredientIndex,
+				editedIngredient: initialState.editedIngredient
 			}
 		case ShoppingListActions.DELETE_INGREDIENT:
 			const oldIngredients = [ ...state.ingredients ];
 			oldIngredients.splice(action.payload,1);
 			return {
 				...state,
-				ingredients: oldIngredients
+				ingredients: oldIngredients,
+				editedIngredientIndex: initialState.editedIngredientIndex,
+				editedIngredient: initialState.editedIngredient
+			}
+		case ShoppingListActions.START_EDIT_INGREDIENT:
+			return {
+				...state,
+				editedIngredient: { ...state.ingredients[action.payload] },
+				editedIngredientIndex: action.payload
+			}
+		case ShoppingListActions.RESET:
+			return {
+					...initialState,
+					ingredients: [ ...state.ingredients ]
 			}
 		default:
 			return state;

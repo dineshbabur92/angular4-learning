@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 import { StoreModule } from "@ngrx/store";
-
+import { EffectsModule } from "@ngrx/effects";
 
 import { AppComponent } from './app.component';
 import { ShoppingListModule } from "./shopping-list/shopping-list.module";
@@ -11,8 +11,9 @@ import { RecipesModule } from "./recipes/recipes.module";
 import { AuthModule } from "./auth/auth.module";
 import { CoreModule } from "./core/core.module";
 import { AppRoutingModule } from "./app-routing.module";
-// import { reducersMap } from "./store/app.reducers";
-import * as ShoppingListReducers from "./shopping-list/store/shopping-list.reducers";
+import { reducers } from "./store/app.reducers";
+import { AuthEffects } from "./auth/store/auth.effects";
+// import * as ShoppingListReducers from "./shopping-list/store/shopping-list.reducers";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import * as ShoppingListReducers from "./shopping-list/store/shopping-list.reduc
     ShoppingListModule,
     AuthModule,
     CoreModule,
-    StoreModule.forRoot({shoppingList: ShoppingListReducers.ShoppingListReducer})
+    StoreModule.forRoot(reducers), 
+    EffectsModule.forRoot([AuthEffects])
   ],
   bootstrap: [AppComponent]
 })
