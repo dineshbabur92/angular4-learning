@@ -18,7 +18,6 @@ export class SetRecipes implements Action {
 export class FetchRecipes implements Action {
 
 	readonly type = FETCH_RECIPES;
-	constructor(public payload: Recipe[]){}
 
 }
 
@@ -32,7 +31,7 @@ export class SaveRecipes implements Action {
 export class AddRecipe implements Action {
 
 	readonly type = ADD_RECIPE;
-	constructor(public payload: Recipe[]){}
+	constructor(public payload: Recipe){}
 
 }
 
@@ -42,3 +41,5 @@ export class UpdateRecipe implements Action {
 	constructor(public payload: { index: number, recipe: Recipe }){}
 
 }
+
+export type RecipesAction = AddRecipe | SetRecipes | UpdateRecipe | FetchRecipes | SaveRecipes;
