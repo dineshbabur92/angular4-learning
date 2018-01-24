@@ -3,6 +3,11 @@
 import { Recipe } from "../recipe.model";
 import { Ingredient } from "../../shared/ingredient.model";
 import * as RecipesActions from "./recipes.actions";
+import * as AppReducers from "../../store/app.reducers";
+
+export interface FeatureState extends AppReducers.AppState{
+	recipes: RecipesState
+}
 
 export interface RecipesState{
 	recipes: Recipe[];
@@ -31,6 +36,29 @@ const initialState: RecipesState = {
 	]
 } 
 
-export function RecipesReducer(state: RecipesState = initialState, action: RecipesActions.RecipesAction){
+export function RecipesReducer(state: RecipesState = initialState, 
+	action: RecipesActions.RecipesAction){
+
+	switch (action.type) {
+		case RecipesActions.ADD_RECIPE:
+			return {
+				...state,
+				recipes: [ ...state.recipes, action.payload ]
+			}
+		case RecipesActions.SET_RECIPES:
+			return {
+				...state,
+				recipes: [ ...action.payload ]
+			}
+		case RecipesActions.UPDATE_RECIPE:
+			const recipes = [ ...state.recipes ];
+			recipes[action.payload.index] = action.payload.recipe;
+			return {
+				...state,
+				recipes: recipes
+			}
+		default:
+			return state;
+	}
 
 }
