@@ -57,6 +57,13 @@ export function RecipesReducer(state: RecipesState = initialState,
 				...state,
 				recipes: recipes
 			}
+		case RecipesActions.DELETE_RECIPE:
+			const newRecipes = [ ...state.recipes ];
+			newRecipes.splice(action.payload, 1);
+			return {
+				...state,
+				recipes: newRecipes
+			}
 		default:
 			return state;
 	}

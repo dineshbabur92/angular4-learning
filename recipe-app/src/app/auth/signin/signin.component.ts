@@ -4,9 +4,9 @@ import { Store } from "@ngrx/store";
 
 // import { AuthService } from "../auth.service";
 import * as AppReducers from "../../store/app.reducers";
-import * as AuthReducers from "../store/auth.reducers";
+// import * as AuthReducers from "../store/auth.reducers";
 import * as AuthActions from "../store/auth.actions";
-import * as firebase from "firebase";
+// import * as firebase from "firebase";
 
 @Component({
   selector: 'app-signin',

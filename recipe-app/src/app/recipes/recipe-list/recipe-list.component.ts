@@ -11,8 +11,8 @@ import { Store } from "@ngrx/store";
 // import { Recipe } from '../recipe.model';
 // import { RecipeService } from '../recipe.service';
 // import { Subscription } from "rxjs/Subscription";
-import * as RecipeReducers from "../store/recipes.reducers";
-import * as RecipeActions from "../store/recipes.actions";
+import * as RecipesReducers from "../store/recipes.reducers";
+// import * as RecipesActions from "../store/recipes.actions";
 
 @Component({
   selector: 'app-recipe-list',
@@ -25,14 +25,14 @@ export class RecipeListComponent implements OnInit
 
 	// public recipes: Recipe[] = []
   // public recipeUpdateSubscription: Subscription;
-  recipesState: Observable<RecipeReducers.RecipesState>;
+  recipesState: Observable<RecipesReducers.RecipesState>;
 	// @Output('onChooseRecipe') chooseRecipeEvent = new EventEmitter<Recipe>();
 
   constructor(
     // private recipeService: RecipeService,
     private route: ActivatedRoute,
     private router: Router, 
-    private store: Store<RecipeReducers.FeatureState>) {}
+    private store: Store<RecipesReducers.FeatureState>) {}
 
   ngOnInit() {
     // this.recipeUpdateSubscription = this.recipeService.recipeUpdated.subscribe((recipes: Recipe[]) => {

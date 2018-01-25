@@ -1,8 +1,8 @@
 import { Component, 
 	OnInit, 
 	ViewChild, 
-	ElementRef,
-  OnDestroy,
+	// ElementRef,
+  // OnDestroy,
   // AfterViewInit
 	// EventEmitter,
 	// Output 
@@ -22,7 +22,9 @@ import * as ShoppingListActions from "../store/shopping-list.actions";
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.css']
 })
-export class ShoppingEditComponent implements OnInit, OnDestroy {
+export class ShoppingEditComponent implements OnInit
+// , OnDestroy 
+{
 
 	// @ViewChild('nameInput') nameInputRef: ElementRef;
 	// @ViewChild('amountInput') amountInputRef: ElementRef;
@@ -70,10 +72,10 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(){
-    // this.updateSubscription.unsubscribe();
-    // this.store.dispatch( new ShoppingListActions.Reset() );
-  }
+  // ngOnDestroy(){
+  //   // this.updateSubscription.unsubscribe();
+  //   // this.store.dispatch( new ShoppingListActions.Reset() );
+  // }
 
   onAddIngredient(form: NgForm){
   	// const ingName = this.nameInputRef.nativeElement.value;

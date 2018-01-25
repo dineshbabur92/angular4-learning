@@ -1,14 +1,20 @@
+import { Injectable } from "@angular/core";
 import { Effect, Actions } from "@ngrx/effects";
 import { HttpClient, HttpRequest } from "@angular/common/http";
 import { Store } from "@ngrx/store";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/withLatestFrom";
 
 import * as RecipesActions from "./recipes.actions";
 import { Recipe } from "../recipe.model";
 import * as RecipesReducers from "./recipes.reducers";
 
+@Injectable()
 export class RecipesEffect {
 
-	constructor(private action$: Actions, 
+	constructor(
+		private action$: Actions, 
 		private httpClient: HttpClient, 
 		private store: Store<RecipesReducers.FeatureState>){}
 

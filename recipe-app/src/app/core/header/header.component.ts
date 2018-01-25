@@ -3,17 +3,18 @@ import { Component,
   // Output, 
   // EventEmitter 
 } from '@angular/core';
-import { HttpEvent } from "@angular/common/http";
-import { Response } from "@angular/http";
+// import { HttpEvent } from "@angular/common/http";
+// import { Response } from "@angular/http";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 
-import { DataStorageService } from "../../shared/data-storage.service";
-import { RecipeService } from "../../recipes/recipe.service";
+// import { DataStorageService } from "../../shared/data-storage.service";
+// import { RecipeService } from "../../recipes/recipe.service";
 // import { AuthService } from "../../auth/auth.service";
 import * as AppReducers from "../../store/app.reducers";
 import * as AuthReducers from "../../auth/store/auth.reducers";
 import * as AuthActions from "../../auth/store/auth.actions";
+import * as RecipesActions from "../../recipes/store/recipes.actions";
 
 @Component({
   selector: 'app-header',
@@ -25,8 +26,9 @@ export class HeaderComponent implements OnInit {
   authState: Observable<AuthReducers.AuthState>;
 	// @Output('goToEmitted') goToEmitter = new EventEmitter<string>();
   //check why private of authService and its use in header.component.html does not work with --prod --aot compilation
-  constructor(private dataStorageService: DataStorageService,
-    private recipeService: RecipeService,
+  constructor(
+    // private dataStorageService: DataStorageService,
+    // private recipeService: RecipeService,
     // private authService: AuthService, 
     private store: Store<AppReducers.AppState>) { }
 
@@ -48,16 +50,18 @@ export class HeaderComponent implements OnInit {
     //   console.log(response);
     // },(error) => console.log("Error in saving data, ", error))
 
-    this.dataStorageService.saveRecipes().subscribe((response)=>{
-      console.log(response);
-    },(error) => console.log("Error in saving data, ", error))
+    // this.dataStorageService.saveRecipes().subscribe((response)=>{
+    //   console.log(response);
+    // },(error) => console.log("Error in saving data, ", error))
+    this.store.dispatch(new RecipesActions.SaveRecipes());
   }
 
   // isAuthenticated(){
   //   return this.authService.isAuthenticated();
   // }
   onFetchData(){
-    this.dataStorageService.fetchRecipes();
+    // this.dataStorageService.fetchRecipes();
+    this.store.dispatch(new RecipesActions.FetchRecipes());
   }
 
   signout(){

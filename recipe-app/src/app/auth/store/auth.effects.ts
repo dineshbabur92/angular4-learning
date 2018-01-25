@@ -32,6 +32,9 @@ export class AuthEffects {
 					firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
 				);
 		})
+		.switchMap(() => {
+		  return fromPromise(firebase.auth().currentUser.getToken());
+		})
 		.mergeMap((token: string) => {
 			return [
 				{ type: AuthActions.SIGNUP },
@@ -50,11 +53,15 @@ export class AuthEffects {
 					firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
 				);
 		})
+		.switchMap(() => {
+		  return fromPromise(firebase.auth().currentUser.getToken());
+		})
 		// .catch(error => {
 		// 	console.log(error);
 		// 	// return Observable.empty();
 		// })
-		.mergeMap((token: string) => {	
+		.mergeMap((token: string) => {
+			console.log("token received from firebase, token, ", token);
 			return [
 				{ type: AuthActions.SIGNIN },
 				{ type: AuthActions.SET_TOKEN, payload: token }
